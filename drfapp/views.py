@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from drfapp.models import Student
 from drfapp.serializer import StudentSerializer
-from rest_framework.generics import GenericAPIView, ListAPIView, ListCreateAPIView, UpdateAPIView, \
+from rest_framework.generics import ListAPIView, ListCreateAPIView, UpdateAPIView, \
     RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView, DestroyAPIView, RetrieveDestroyAPIView, \
     CreateAPIView, RetrieveAPIView
 
@@ -70,3 +70,7 @@ class StudentRetrieveUpdate(RetrieveUpdateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
+
+class StudentListCreate(ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer

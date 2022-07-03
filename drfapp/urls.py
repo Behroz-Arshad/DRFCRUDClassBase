@@ -1,6 +1,8 @@
 from django.urls import path
-from drfapp.views import Std, StudentListAPIView, StudentCreateAPIView, StudentDestroyAPIView, StudentRetreveAPIView, \
-    StudentUpdateAPIView, StudentRetrieveDestroy, StudentRetrieveUpdateDestroy, StudentRetrieveUpdate
+from drfapp.views import Std, StudentListAPIView, StudentCreateAPIView, StudentDestroyAPIView,\
+    StudentRetreveAPIView, \
+    StudentUpdateAPIView, StudentRetrieveDestroy, StudentRetrieveUpdateDestroy,\
+    StudentRetrieveUpdate, StudentListCreate
 
 urlpatterns = [
     path('', Std.as_view()),
@@ -13,5 +15,6 @@ urlpatterns = [
     path('StudentRetrieveDestroyAPi/<int:pk>/', StudentRetrieveDestroy.as_view()),
     path('StudentRetrieveUpdateDestroyudentAPi/<int:pk>/', StudentRetrieveUpdateDestroy.as_view()),
     path('StudentRetrieveUpdateAPi/<int:pk>/', StudentRetrieveUpdate.as_view()),
+    path('StudentListCreate/', StudentListCreate.as_view()),
 
 ]
