@@ -21,3 +21,30 @@ class Std(APIView):
             serializer.save()
             return Response({'msg': 'Created'}, status=status.HTTP_201_CREATED)
         return Response({'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Studentapi(APIView):
+    def put(self, request, pk):
+        std = Student.objects.get(id=pk)
+        serializer = StudentSerializer(std, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"msg": "updated", "data": serializer.data}, status=status.HTTP_200_OK)
+        return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk):
+        std = Student.objects.get(id=pk)
+        serializer = StudentSerializer(std, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"msg": "updated", "data": serializer.data}, status=status.HTTP_200_OK)
+        return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self ,request,  pk, format = None):
+        Student.objects.get(id=pk).delete()
+        return Response({"msg": "Deleted"})
+
+    def get(self, request,pk):
+        std = Student.objects.get(id=pk)
+        serializer = StudentSerializer(std)
+        return Response(serializer.data)
